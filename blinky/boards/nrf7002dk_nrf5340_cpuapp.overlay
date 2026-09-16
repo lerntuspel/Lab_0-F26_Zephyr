@@ -1,5 +1,6 @@
 / {
 	aliases {
-		led5180 = &led1;
+		led5180 = &led1;    //custom LED alias
+		button1 = &button0; //button toggle
 	};
 };
