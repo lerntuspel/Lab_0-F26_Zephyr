@@ -2,9 +2,9 @@
 
 | Team Member Name | Email Address       |
 |------------------|---------------------|
-| [Name 1]         | [Email 1]           |
+| Alexander Yu      | ayu2126@engineering.upenn.edu |          |
 
-**GitHub Repository URL:** 
+**GitHub Repository URL: https://github.com/lerntuspel/Lab_0-F26_Zephyr.git** 
 
 ## 1. Sample Header
 
