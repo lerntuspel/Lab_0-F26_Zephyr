@@ -1,0 +1,5 @@
+tests:
+ sum_log.test:
+   platform_allow:  qemu_cortex_m3 nrf7002dk_nrf5340_cpuapp     # comment out 'platform_allow' and run twister without -p flag to auto-select available boards
+   tags: sum_log unit
+   harness: ztest
