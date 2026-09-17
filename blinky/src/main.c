@@ -8,6 +8,12 @@
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
 
+#ifdef CONFIG_SUM_PRINT
+	#include "sum_printk.h"
+#elif defined(CONFIG_SUM_LOG)
+	#include "sum_log.h"
+#endif
+
 /* 1000 msec = 1 sec */
 #define SLEEP_TIME_MS   2000
 #define POLL_MS 50
@@ -51,6 +57,11 @@ int main(void)
 
 		if (state && !last_state) {
 			gpio_pin_toggle_dt(&led);
+			#ifdef CONFIG_SUM_PRINT
+				int total = sum_printk(3, 4);
+			#elif defined(CONFIG_SUM_LOG)
+				int total = sum_log(3, 4);
+			#endif
 		}
 
 		last_state = state;

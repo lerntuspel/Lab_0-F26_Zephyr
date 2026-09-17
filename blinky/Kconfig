@@ -1,0 +1,18 @@
+menu "Sum function selection"
+
+choice SUM_IMPLEMENTATION
+	prompt "Sum function implementation"
+	default SUM_PRINT
+
+config SUM_PRINT
+	bool "Print result with printk()"
+
+config SUM_LOG
+	bool "Print result with the Logger (includes hexdump)"
+	select LOG
+
+endchoice
+
+endmenu
+
+source "Kconfig.zephyr"
