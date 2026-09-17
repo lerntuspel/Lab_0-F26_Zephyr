@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
+#include "bme280.h"
 
 #ifdef CONFIG_SUM_PRINT
 	#include "sum_printk.h"
@@ -47,6 +48,11 @@ int main(void)
 		return 0;
 	}
 
+	if (bme280_init() < 0) {
+		return 0;
+	}
+	int temp;
+
 	while (1) {
 		int state = gpio_pin_get_dt(&button);
 
@@ -59,9 +65,15 @@ int main(void)
 			gpio_pin_toggle_dt(&led);
 			#ifdef CONFIG_SUM_PRINT
 				int total = sum_printk(3, 4);
+				if (bme280_read_temperature(&temp) == 0) {
+					printk("Temperature: %d.%02d C\n", temp / 100, temp % 100);
+				}
 			#elif defined(CONFIG_SUM_LOG)
 				int total = sum_log(3, 4);
+				bme280_log_temperature();
 			#endif
+
+			
 		}
 
 		last_state = state;
